@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul th:each="groupe: ${groupes}">
+    <li><span th:text="${groupe.nom}"></span>
+        <a href="#" th:href="@{'/admin/groupe/edit/'+${groupe.id}}">Edit</a>
+        <a href="#" th:href="@{'/admin/groupe/delete/'+${groupe.id}}">Supprimer</a>
+    </li>
+</ul>
+</body>
+</html>

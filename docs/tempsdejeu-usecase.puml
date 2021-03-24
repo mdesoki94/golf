@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+
+Admin --> (gerer les utilisateurs)
+Admin --> (gerer les golfs, les parcours et les trous)
+
+Directeur -> (Generer les cadences)
+(Generer les cadences) ..> (importer CSV): include
+(Generer les cadences) ..> (exporter un pdf): include
+
+Directeur --> (Planifier les tournois)
+(Planifier les tournois) <.. (creation d'un parcours):extends
+(creation d'un parcours) <.. (creation d'un golf):extends
+Directeur -->(Commenter un tournoi)
+
+
+
+@enduml
