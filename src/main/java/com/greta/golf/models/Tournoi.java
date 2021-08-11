@@ -1,5 +1,7 @@
 package com.greta.golf.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -10,16 +12,18 @@ public class Tournoi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
     private String nom;
     private Integer nbTours;
     private String commentaire;
+    private Integer nbJoueurParties;
     @OneToMany(mappedBy = "tournoi")
     private Collection<Tour>tour;
     @ManyToOne
-    User user;
+    private User user;
     @ManyToOne
-    Parcours parcours;
+    private Parcours parcours;
 
     public Collection<Tour> getTour() {
         return tour;
@@ -83,5 +87,13 @@ public class Tournoi {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public Integer getNbJoueurParties() {
+        return nbJoueurParties;
+    }
+
+    public void setNbJoueurParties(Integer nbJoueurParties) {
+        this.nbJoueurParties = nbJoueurParties;
     }
 }

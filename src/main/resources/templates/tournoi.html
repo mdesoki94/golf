@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html style="  position: relative; min-height: 100%; background-color: #198754;" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: myheader"> </div>
+</head>
+<style>
+    textarea:hover,
+    input:hover,
+    textarea:active,
+    input:active,
+    textarea:focus,
+    input:focus,
+    button:focus,
+    button:active,
+    button:hover,
+    label:focus,
+    .btn:active,
+    .btn.active
+    {
+        outline:0px !important;
+        -webkit-appearance:none;
+        box-shadow: none !important;
+    }
+</style>
+<body style="background-color: #198754;">
+<div th:replace="header :: mynavbar"> </div>
+
+<h1 class="text-center text-warning">TOURNOIS</h1>
+<br>
+
+<div style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;">
+    <div class="accordion col-6 "   id="accordionExample">
+        <div th:each="golf : ${golfs}" class="accordion-item ">
+            <h2 class="accordion-header" id="headingOne">
+                <button style="background-color: white;"  class="accordion-button " type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse'+${golf.id}" aria-expanded="true" aria-controls="collapseOne">
+                    <p style="color:#0C63e4;" th:text="${golf.nom}"></p>
+                </button>
+            </h2>
+            <div th:id="'collapse'+${golf.id}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+
+                    <div th:each="golfParcour : ${golf.parcours}">
+                        <a href="#" th:href="@{'/arbitre/tournois/add/'+${golfParcour.id}}"><button class="btn-sm btn-warning"> Ajouter tournois </button></a>
+                        <h6 class="text-center text-danger" th:text="${golfParcour.nom.toUpperCase()}"></h6>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <tr >
+                                <th class="text-center" scope="col">Nom </th>
+                                <th class="text-center" scope="col">Date </th>
+                                <th class="text-center" scope="col">Commentaire </th>
+                                <th class="text-center" scope="col">Action </th>
+
+                            </tr>
+
+                            <tr th:each="parcoursTournois :${golfParcour.tournoi}">
+                                <a th:href="@{/arbitre/tours/{idTournois}(idTournois=${parcoursTournois.id})}"> <h4 th:text="${parcoursTournois.nom}"></h4></a>
+                                <td class="text-center" th:text="${parcoursTournois.nom}"></td>
+                                <td class="text-center" th:text="${parcoursTournois.dateDebut}"></td>
+                                <td class="text-center" th:text="${parcoursTournois.commentaire}"></td>
+                                <td class="text-center"><a href="#" th:href="@{'/arbitre/tournois/'+${parcoursTournois.id}}"><button class="btn-sm btn-primary">Modifier</button></a>  <a href="#" th:href="@{'/arbitre/tournois/delete/'+${parcoursTournois.id}}"><button class="btn-sm btn-danger"> Supprimer </button></a><br>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

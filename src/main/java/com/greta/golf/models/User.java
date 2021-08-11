@@ -1,5 +1,7 @@
 package com.greta.golf.models;
 
+import org.jsoup.Jsoup;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -13,10 +15,11 @@ public class User {
     @Column(nullable = false)
     private Long id;
     @Basic
-    @Column(nullable = false,length = 50)
+
+    @Column(nullable = false,length = 50, unique = true)
     private String login;
     @Basic
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 255)
     private String password;
     @Basic
     @Column(nullable = false,length = 50)
@@ -26,7 +29,7 @@ public class User {
     private String email;
 
     @ManyToMany
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -41,7 +44,7 @@ public class User {
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.login = Jsoup.parse(login).text();
     }
 
     public String getPassword() {
@@ -49,7 +52,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Jsoup.parse(password).text();
     }
 
     public boolean isActive() {
@@ -65,14 +68,14 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = Jsoup.parse(email).text();
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -98,5 +101,14 @@ public class User {
                 ", active=" + active +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public User() {
+    }
+
+    public User(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
     }
 }

@@ -13,11 +13,11 @@ public class Golf {
     @Basic
     @Column(nullable = false,unique = false)
     private String nom;
-    private String coordGPS;
-
-
+    private String latitude;
+    private String longitude;
 
     @OneToMany(mappedBy = "golf")
+
     private Collection <Parcours> parcours;
 
     public Collection<Parcours> getParcours() {
@@ -51,12 +51,21 @@ public class Golf {
         this.nom = nom;
     }
 
-    public String getCoordGPS() {
-        return coordGPS;
+
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setCoordGPS(String coordGPS) {
-        this.coordGPS = coordGPS;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     @Override

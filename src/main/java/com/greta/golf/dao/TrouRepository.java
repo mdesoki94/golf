@@ -9,6 +9,8 @@ public interface TrouRepository extends CrudRepository <Trou, Long>  {
 
     List<Trou>findTrouByNumTrou(Integer numTrou);
     Trou findTrouByParcours(Integer parcours);
+    List<Trou>deleteAllByParcoursId(long parcoursId);
 
 
+    List<Trou> findTrouByParcours_Id(Long id);
 }

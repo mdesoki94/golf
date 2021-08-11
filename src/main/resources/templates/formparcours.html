@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html style="  position: relative;
+         min-height: 100%; background-color: #198754;" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="header :: myheader"> </div>
+</head>
+<body style="background-color: #198754">
+<div th:replace="header :: mynavbar"> </div>
+
+<h1 class="text-center text-warning">MODIFICATION PARCOURS</h1>
+<br>
+<div class="container" style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;
+ border-style:solid;
+ border-color:black;
+  width:50%;">
+
+  <form class="col-6"
+        action="#"
+        enctype="multipart/form-data"
+        method="post"
+        th:action="@{/parcours}"
+        th:object="${parcours}">
+
+    <input th:field="*{golfid}" type="hidden">
+    <input th:field="*{id}" type="hidden">
+    <div class="form-group">
+      <label>Nom du Parcours</label>
+      <input th:field="*{nom}" type="text" class="form-control"   placeholder="Nom du parcours">
+
+    </div>
+    <table>
+      <theader>
+
+        <td>Numéro du trou</td>
+        <td>Nom</td>
+        <td>Par</td>
+
+      </theader>
+      <tbody>
+      <tr th:each="trou,itemStat:${parcours.trous}">
+        <input  type="hidden" th:field="*{trous[__${itemStat.index}__].id}">
+        <td><input th:field="*{trous[__${itemStat.index}__].numTrou}" class="form-control" type="text" readonly></td>
+        <td><input th:field="*{trous[__${itemStat.index}__].nom}" class="form-control" type="text" ></td>
+        <td><input th:field="*{trous[__${itemStat.index}__].par}" class="form-control"  type="number" ></td>
+
+      </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <div style="display: flex; align-items: center; justify-content: center; ">
+      <input class="btn btn-warning text-danger" type="submit" value="Valider">
+
+    </div>
+  </form>
+
+
+</div>
+
+
+</body>
+</html>
+

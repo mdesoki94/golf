@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html  style="  position: relative;
+         min-height: 100%; background-color: #198754;" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: myheader"> </div>
+
+</head>
+<body  style="background-color: #198754">
+<div th:replace="header :: mynavbar"> </div>
+
+<h1 class="text-center text-warning">MODIFICATION GOLF</h1>
+<br>
+<div class="container" style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;
+ border-style:solid;
+ border-color:black;
+  width:50%;">
+
+    <form class="col-6"
+          action="#"
+          enctype="multipart/form-data"
+          method="post"
+          th:action="@{/golf}"
+          th:object="${golf}">
+
+        <input th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label>Nom du golf</label>
+            <input th:field="*{nom}" type="text" class="form-control"   placeholder="Nom du golf">
+
+        </div>
+
+
+        <div class="form-group">
+            <label>GPS latitude</label><br>
+            <input th:field="*{latitude}" type="number" placeholder="latitude" step="0.01" min="-99999999999999999999" max="99999999999999999999">
+        </div>
+        <div class="form-group">
+            <label>GPS longitude</label><br>
+            <input th:field="*{longitude}" type="number" placeholder="latitude" step="0.01" min="-99999999999999999999" max="99999999999999999999">
+        </div>
+        <br>
+
+        <div style="display: flex; align-items: center; justify-content: center; ">
+            <input class="btn btn-warning text-danger" type="submit" value="Valider">
+
+        </div>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>

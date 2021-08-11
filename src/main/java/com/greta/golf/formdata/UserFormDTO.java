@@ -1,6 +1,7 @@
 package com.greta.golf.formdata;
 
 import com.greta.golf.models.Role;
+import org.jsoup.Jsoup;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class UserFormDTO {
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.mail = Jsoup.parse(mail).text();
     }
 
     public String getLogin() {
@@ -41,7 +42,7 @@ public class UserFormDTO {
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.login = Jsoup.parse(login).text();
     }
 
     public String getPassword() {
@@ -49,6 +50,6 @@ public class UserFormDTO {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Jsoup.parse(password).text();
     }
 }

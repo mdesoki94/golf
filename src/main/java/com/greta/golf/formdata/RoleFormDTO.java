@@ -1,5 +1,7 @@
 package com.greta.golf.formdata;
 
+import org.jsoup.Jsoup;
+
 public class RoleFormDTO {
     private long id;
     private String name;
@@ -18,7 +20,7 @@ public class RoleFormDTO {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = Jsoup.parse(name).text();
     }
 
     public String getRole() {
@@ -26,6 +28,6 @@ public class RoleFormDTO {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role = Jsoup.parse(role).text();
     }
 }

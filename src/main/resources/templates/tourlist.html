@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html style="  position: relative;
+         min-height: 100%; " lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="header :: myheader"> </div>
+</head>
+<body style="background-color: #198754">
+<div th:replace="header :: mynavbar"> </div>
+<div class="container">
+<div class="d-flex flex-column align-items-center">
+<h1 class="text-center" ></h1>
+<div th:text="'Golf : '+${tournois.getParcours().getGolf().nom}+' Parcours : '+${tournois.getParcours().nom}"></div>
+<br>
+  <div>
+
+  </div>
+<a class="btn btn-secondary" th:href="@{/arbitre/tours/add/{idTournois}(idTournois=${tournois.getId()})}">Ajouter tour</a>
+
+<div class="row my-2" th:each="tournoisTours:${tournois.tour}">
+  <p th:text="${tournoisTours.date}"></p>
+  <a th:href="@{'/arbitre/tours/update/'+${tournoisTours.id}}" class="btn btn-secondary">Modifier tour</a>
+  <br>
+  <a class="btn btn-secondary" th:href="@{'/arbitre/tours/delete/'+${tournoisTours.id}}">Supprimer tour</a>
+</div>
+</div>
+</div>
+
+</body>
+</html>

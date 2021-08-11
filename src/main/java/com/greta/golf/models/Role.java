@@ -19,7 +19,7 @@ public class Role {
     private String role;
 
     @ManyToMany
-    private Collection<User> users;
+    private Set<User> users;
 
 
     public Long getId() {
@@ -46,11 +46,11 @@ public class Role {
         this.role = role;
     }
 
-    public Collection<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }

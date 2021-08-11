@@ -1,20 +1,133 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html style="  position: relative;
+         min-height: 100%; background-color: #198754;" lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:replace="header :: myheader"></div>
 </head>
-<body>
-<ul th:each="trou: ${trous}">
-    <li>Numero de trou: <span th:text="${trou.numTrou}">
-        </span>
-        <br>
-       Nombre de par: <span th:text="${trou.par}">
+<style>
+    textarea:hover,
+    input:hover,
+    textarea:active,
+    input:active,
+    textarea:focus,
+    input:focus,
+    button:focus,
+    button:active,
+    button:hover,
+    label:focus,
+    .btn:active,
+    .btn.active {
+        outline: 0px !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+    .map-responsive {
+        overflow:hidden;
+        padding-bottom:56.25%;
+        position:relative;>
+    height:0;
+    }
+
+    .map-responsive iframe {
+        left:0;
+        top:0;
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
 
 
-        </span>
 
-    </li>
-</ul>
+</style>
+<body style="background-color: #198754;">
+<div th:replace="header :: mynavbar"></div>
+
+<h1 class="text-center text-warning">GOLFS</h1>
+<br>
+
+<div style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;">
+    <div class="accordion col-6" id="accordionExample">
+        <div th:each="golf : ${golfs}" class="accordion-item" style="padding: 15px;">
+            <h2 class="accordion-header" id="headingOne">
+                <div style="display: flex; flex-direction: row;">
+                    <button class="accordion-button " type="button" style="background-color: white; box-shadow: none;"
+                            data-bs-toggle="collapse"
+                            th:data-bs-target="'#collapse'+${golf.id}" aria-expanded="true" aria-controls="collapseOne">
+                        <p style="display: inline; color:#0C63e4;" th:text="${golf.nom}"></p>
+                    </button>
+                    <a href="#" th:href="@{'/admin/golf/'+${golf.id}}">
+                        <i style="margin-left: 10px;" class="far fa-edit text-warning"></i>
+                    </a> <a href="#" th:href="@{'/admin/golf/delete/'+${golf.id}}">
+                    <i style="margin-left: 10px;" class="far fa-trash-alt text-danger"></i>
+                </a>
+
+
+                    <br/>
+                </div>
+            </h2>
+            <div th:id="'collapse'+${golf.id}" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="text-center">LISTE DES PARCOURS</p>
+                    <br>
+                    <div class="map-responsive">
+                    <iframe  th:src="'https://maps.google.com/maps?q=' + ${golf.latitude} + ',' + ${golf.longitude} + '&hl=fr;z=14&amp;output=embed'"></iframe>
+                    </div>
+                        <br>
+                    <a href="#" th:href="@{'/parcours/add/'+${golf.id}}">
+                        <button class="btn-sm btn-warning"> Ajouter parcours</button>
+                    </a>
+
+                    <div th:each="golfparcour : ${golf.parcours}">
+                        <a href="#" th:href="@{'/admin/parcours/'+${golfparcour.id}}">
+                            <i style="margin-left: 10px;" class="far fa-edit text-warning"></i>
+                        </a> <a href="#" th:href="@{'/admin/parcours/delete/'+${golfparcour.id}}">
+                        <i style="margin-left: 10px;" class="far fa-trash-alt text-danger"></i>
+                    </a>
+
+                        <div class="table-responsive">
+                        <table class="table" >
+                            <tr >
+                                <th class="text-center" scope="col">Trou</th>
+                                <th class="text-center" scope="col">Nom</th>
+                                <th class="text-center" scope="col">Par</th>
+
+                                <th class="text-center" scope="col" style="background-color: yellow">Nom Parcours</th>
+                            </tr>
+                            <tr th:each="trouparcours :${golfparcour.trous}">
+                                <td class="text-center" th:text="${trouparcours.numTrou}"></td>
+                                <td class="text-center" th:text="${trouparcours.nom}"></td>
+                                <td class="text-center" th:text="${trouparcours.par}"></td>
+                                <td class="text-center" style="background-color: yellow"
+                                    th:text="${golfparcour.nom}"></td>
+                            </tr>
+
+                        </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<br>
+<div style=" display: flex;
+  align-items: center;
+  justify-content: center;">
+    <a href="http://localhost:8080/golf/add">
+        <button type="submit" class="btn btn-warning text-danger">Ajouter golf</button>
+    </a>
+</div>
+
+<script src="https://kit.fontawesome.com/fc4107ee4f.js" crossorigin="anonymous"></script>
 </body>
 </html>
+

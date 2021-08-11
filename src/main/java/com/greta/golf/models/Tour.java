@@ -1,9 +1,12 @@
 package com.greta.golf.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -11,6 +14,7 @@ public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private LocalTime heurePremierDepart;
     private Integer intervalleDepart;
@@ -19,7 +23,7 @@ public class Tour {
     @ManyToOne
     private Tournoi tournoi;
     @OneToMany(mappedBy = "tour")
-    private Collection<Ajustement>ajustement;
+    private List<Ajustement> ajustement;
 
     public LocalTime getHeurePremierDepart() {
         return heurePremierDepart;
@@ -45,11 +49,11 @@ public class Tour {
         this.tournoi = tournoi;
     }
 
-    public Collection<Ajustement> getAjustement() {
+    public List<Ajustement> getAjustement() {
         return ajustement;
     }
 
-    public void setAjustement(Collection<Ajustement> ajustement) {
+    public void setAjustement(List<Ajustement> ajustement) {
         this.ajustement = ajustement;
     }
 

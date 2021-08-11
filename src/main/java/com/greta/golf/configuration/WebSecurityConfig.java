@@ -1,5 +1,4 @@
 package com.greta.golf.configuration;
-
 import com.greta.golf.service.JpaUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home","/h2-console/**").permitAll()
+                .antMatchers("/login","/h2-console/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/arbitre/**").hasAuthority("ARBITRE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

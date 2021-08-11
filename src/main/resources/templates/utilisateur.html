@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html style="  position: relative;
+         min-height: 100%; " lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="header :: myheader"> </div>
+</head>
+<body style="background-color: #198754">
+<div th:replace="header :: mynavbar"> </div>
+
+<h1 class="text-center text-warning">AJOUTER UN UTILISATEUR</h1>
+<br>
+<div class="container" style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;
+ border-style:solid;
+ border-color:black;
+  width:50%;
+
+ ">
+
+  <form class="col-6"
+        action="#"
+        enctype="multipart/form-data"
+        method="post"
+        th:action="@{/admin/utilisateurs}" >
+
+    <div class="form-group">
+      <label >Nom</label>
+      <input name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nom">
+
+    </div>
+    <div class="form-group">
+      <label >Email</label>
+      <input name="email" type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input name="pass" type="password" class="form-control"  placeholder="Mot de passe">
+    </div>
+    <div class="form-group">
+      <label>Confirmation du mot de passe</label>
+      <input name="passConfirm" type="password" class="form-control"  placeholder="Confirmation mot de passe">
+    </div>
+    <div class="form-group">
+      <label>Rôle</label>
+      <br>
+      <select name="role" class="form-control">
+        <option value="1">Admin</option>
+        <option value="2">Arbitre</option>
+      </select>
+    </div>
+<br>
+
+    <div style="display: flex; align-items: center; justify-content: center; ">
+      <button type="submit" value="Valider" class="text-center btn btn-warning text-danger">Envoyer</button>
+
+    </div>
+  </form>
+
+
+</div>
+
+
+</body>
+</html>

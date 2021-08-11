@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="  position: relative;
+         min-height: 100%; background-color: #198754;" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="header :: myheader"> </div>
+</head>
+<body style="background-color: #198754">
+<div th:replace="header :: mynavbar"> </div>
+
+<h1 class="text-center text-warning">MODIFICATION TOURNOIS</h1>
+<br>
+<div class="container" style=" display: flex;
+  align-items: center;
+  justify-content: center;  border-width:3px;
+ border-style:solid;
+ border-color:black;
+  width:50%;">
+
+  <form class="col-6"
+        method="post"
+        action="#"
+        enctype="multipart/form-data"
+        th:action="@{/arbitre/tournois}"
+        th:object="${tournois}">
+
+
+    <div class="form-group">
+
+      <input th:field="*{id}" type="hidden">
+      <input th:field="*{parcours_id}" type="hidden">
+      <label>Nom du tournois</label>
+      <input th:field="*{nom}" type="text" class="form-control"   placeholder="Nom du tournois">
+    </div>
+    <div class="form-group">
+      <label>Date de début</label>
+      <input th:field="*{dateDebut}" type="date" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Commentaire</label>
+      <textarea th:field="*{commentaire}" type="textarea" class="form-control"></textarea>
+    </div>
+
+
+    <br>
+
+    <div style="display: flex; align-items: center; justify-content: center; ">
+      <button type="submit" class="btn btn-warning text-danger">Envoyer</button>
+
+    </div>
+  </form>
+
+
+</div>
+
+
+</body>
+</html>

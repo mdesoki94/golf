@@ -2,6 +2,7 @@ package com.greta.golf.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,13 +16,15 @@ public class Parcours {
     @ManyToOne
     private Golf golf;
     @OneToMany(mappedBy = "parcours")
-    private Collection <Trou> trous;
+    private List<Trou> trous;
+    @OneToMany(mappedBy = "parcours")
+    private Collection<Tournoi>tournoi;
 
-    public Collection<Trou> getTrous() {
+    public List<Trou> getTrous() {
         return trous;
     }
 
-    public void setTrous(Collection<Trou> trous) {
+    public void setTrous(List<Trou> trous) {
         this.trous = trous;
     }
 
@@ -33,8 +36,7 @@ public class Parcours {
         this.tournoi = tournoi;
     }
 
-    @OneToMany(mappedBy = "parcours")
-    private Collection<Tournoi>tournoi;
+
 
     public Long getId() {
         return id;
@@ -89,4 +91,5 @@ public class Parcours {
         }
         return par;
     }
+
 }

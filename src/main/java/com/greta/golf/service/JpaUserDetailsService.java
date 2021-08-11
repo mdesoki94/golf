@@ -1,6 +1,6 @@
 package com.greta.golf.service;
 
-import com.greta.golf.dao.UserDao;
+import com.greta.golf.dao.UserRepository;
 import com.greta.golf.models.Role;
 import com.greta.golf.models.User;
 import org.slf4j.Logger;
@@ -19,17 +19,18 @@ import java.util.Set;
 
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public JpaUserDetailsService(UserDao userDao){
-        this.userDao = userDao;
+    public JpaUserDetailsService(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByLogin(username);
+        User user = userRepository.findByLogin(username);
         log.info("Recherche utilisateur: "+username);
         if(user == null){
             throw new UsernameNotFoundException("Utilisateur introuvable : |"+username+"|");

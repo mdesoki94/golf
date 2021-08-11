@@ -25,6 +25,13 @@ public class Trou {
     @OneToMany(mappedBy = "trou")
     private Collection<Ajustement>ajustements;
 
+    public Trou() {
+    }
+
+    public Trou(int numTrou) {
+        this.numTrou=numTrou;
+    }
+
     public Long getId() {
         return id;
     }

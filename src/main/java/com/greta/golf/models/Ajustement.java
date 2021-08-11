@@ -2,6 +2,7 @@ package com.greta.golf.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Table
@@ -10,13 +11,21 @@ public class Ajustement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer tempsAjuste;
+    private int tempsAjuste;
 
     @ManyToOne
     private Tour tour;
 
     @ManyToOne
     private Trou trou;
+
+    public Ajustement() {
+    }
+
+    public Ajustement(Trou trou) {
+        this.trou=trou;
+    }
+
 
     public Tour getTour() {
         return tour;
@@ -43,13 +52,11 @@ public class Ajustement {
         this.id = id;
     }
 
-    public Integer getTempsAjuste() {
+    public int getTempsAjuste() {
         return tempsAjuste;
     }
 
-    public void setTempsAjuste(Integer tempsAjuste) {
+    public void setTempsAjuste(int tempsAjuste) {
         this.tempsAjuste = tempsAjuste;
     }
-
-
 }
