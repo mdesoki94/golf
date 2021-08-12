@@ -173,7 +173,7 @@ insert into trou (id, nom, num_trou, par, parcours_id) values (152, null, 8, 3, 
 insert into trou (id, nom, num_trou, par, parcours_id) values (153, null, 9, 4, 7);
 insert into trou (id, nom, num_trou, par, parcours_id) values (154, null, 10, 4, 7);
 insert into trou (id, nom, num_trou, par, parcours_id) values (155, null, 11, 3, 7);
-insert into golf.trou (id, nom, num_trou, par, parcours_id) values (156, null, 12, 4, 7);
+insert into trou (id, nom, num_trou, par, parcours_id) values (156, null, 12, 4, 7);
 insert into trou (id, nom, num_trou, par, parcours_id) values (157, null, 13, 5, 7);
 insert into trou (id, nom, num_trou, par, parcours_id) values (158, null, 14, 4, 7);
 insert into trou (id, nom, num_trou, par, parcours_id) values (159, null, 15, 4, 7);
